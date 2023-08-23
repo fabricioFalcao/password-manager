@@ -1,1 +1,5 @@
-// Setup incial
+function Form() {
+
+}
+
+export default Form;
