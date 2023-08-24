@@ -8,6 +8,9 @@ const INITIAL_STATE = {
   url: '',
 } as FormDataType;
 
+const validClass = 'valid-password-check';
+const invalidClass = 'invalid-password-check';
+
 function Form({ setShowForm }:SetShowFormType) {
   const [formData, setFormData] = useState(INITIAL_STATE);
   const { service, login, password, url } = formData;
@@ -21,15 +24,6 @@ function Form({ setShowForm }:SetShowFormType) {
       [id]: value,
     });
   };
-
-  // const serviceFilledIn = formData.service.trim().length > 0;
-  // const loginFilledIn = formData.login.trim().length > 0;
-  // const passwordAbove8 = formData.password.trim().length >= 8;
-  // const passwordBelow16 = formData.password.trim().length <= 16;
-  // const passwordNumbersAndLetters = /(?=.*[0-9])(?=.*[a-zA-Z])/.test(formData.password);
-  // const passwordSpecialCharacter = /[^a-zA-Z0-9_]/.test(formData.password);
-  // const validForm = (serviceFilledIn && loginFilledIn && passwordAbove8 && passwordBelow16
-  //     && passwordNumbersAndLetters && passwordSpecialCharacter);
 
   const formFieldsCheck = {
     serviceFilledIn: formData.service.trim().length > 0,
@@ -49,47 +43,77 @@ function Form({ setShowForm }:SetShowFormType) {
   );
 
   return (
-    <div>
-      <form action="">
-        <label htmlFor="service">Nome do serviço</label>
-        <input
-          type="text"
-          id="service"
-          required
-          value={ service }
-          onChange={ handleChange }
-        />
-        <br />
-        <label htmlFor="login">Login</label>
-        <input
-          type="text"
-          id="login"
-          required
-          value={ login }
-          onChange={ handleChange }
-        />
-        <br />
-        <label htmlFor="password">Senha</label>
-        <input
-          type="password"
-          id="password"
-          required
-          value={ password }
-          onChange={ handleChange }
-        />
-        <br />
-        <label htmlFor="url">URL</label>
-        <input
-          type="text"
-          id="url"
-          value={ url }
-          onChange={ handleChange }
-        />
-        <br />
-        <button type="submit" disabled={ !validForm }>Cadastrar</button>
-        <button onClick={ () => setShowForm(false) }>Cancelar</button>
-      </form>
-    </div>
+    <>
+      <div>
+        <form action="">
+          <label htmlFor="service">Nome do serviço</label>
+          <input
+            type="text"
+            id="service"
+            required
+            value={ service }
+            onChange={ handleChange }
+          />
+          <br />
+          <label htmlFor="login">Login</label>
+          <input
+            type="text"
+            id="login"
+            required
+            value={ login }
+            onChange={ handleChange }
+          />
+          <br />
+          <label htmlFor="password">Senha</label>
+          <input
+            type="password"
+            id="password"
+            required
+            value={ password }
+            onChange={ handleChange }
+          />
+          <br />
+          <label htmlFor="url">URL</label>
+          <input
+            type="text"
+            id="url"
+            value={ url }
+            onChange={ handleChange }
+          />
+          <br />
+          <button type="submit" disabled={ !validForm }>Cadastrar</button>
+          <button onClick={ () => setShowForm(false) }>Cancelar</button>
+        </form>
+      </div>
+
+      <aside>
+        <p
+          className={ formFieldsCheck.passwordAbove8
+            ? validClass : invalidClass }
+        >
+          Possuir 8 ou mais caracteres
+        </p>
+        <p
+          className={ formFieldsCheck.passwordBelow16
+            ? validClass : invalidClass }
+        >
+          Possuir até 16 caracteres
+        </p>
+        <p
+          className={ formFieldsCheck.passwordNumbersAndLetters
+            ? validClass : invalidClass }
+        >
+          Possuir letras e números
+        </p>
+        <p
+          className={ formFieldsCheck.passwordSpecialCharacter
+            ? validClass : invalidClass }
+        >
+          Possuir algum caractere especial
+        </p>
+      </aside>
+    </>
+
   );
 }
 
