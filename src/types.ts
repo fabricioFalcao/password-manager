@@ -1,6 +1,4 @@
-export type SetShowFormType = {
-  setShowForm: React.Dispatch<React.SetStateAction<boolean>>;
-};
+export type SetShowFormType = React.Dispatch<React.SetStateAction<boolean>>;
 
 export type FormDataType = {
   service: string,

@@ -21,7 +21,7 @@ function App() {
         ? <button onClick={ () => setShowForm(true) }>Cadastrar nova senha</button>
         : <Form setShowForm={ setShowForm } handleSubmit={ handleSubmit } />
       }
-      <ServicesList />
+      <ServicesList servicesList={ servicesList } />
     </div>
   );
 }

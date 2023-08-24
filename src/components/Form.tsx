@@ -30,6 +30,12 @@ function Form({ setShowForm, handleSubmit }: FormProps) {
     });
   };
 
+  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    handleSubmit(formData);
+    setShowForm(false);
+  };
+
   const formFieldsCheck = {
     serviceFilledIn: formData.service.trim().length > 0,
     loginFilledIn: formData.login.trim().length > 0,
@@ -50,7 +56,7 @@ function Form({ setShowForm, handleSubmit }: FormProps) {
   return (
     <>
       <div>
-        <form action="" onSubmit={ () => handleSubmit(formData) }>
+        <form action="" onSubmit={ onSubmit }>
           <label htmlFor="service">Nome do serviço</label>
           <input
             type="text"
