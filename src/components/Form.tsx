@@ -11,7 +11,12 @@ const INITIAL_STATE = {
 const validClass = 'valid-password-check';
 const invalidClass = 'invalid-password-check';
 
-function Form({ setShowForm }:SetShowFormType) {
+type FormProps = {
+  setShowForm: SetShowFormType;
+  handleSubmit: (formData: FormDataType) => void;
+};
+
+function Form({ setShowForm, handleSubmit }: FormProps) {
   const [formData, setFormData] = useState(INITIAL_STATE);
   const { service, login, password, url } = formData;
 
@@ -45,7 +50,7 @@ function Form({ setShowForm }:SetShowFormType) {
   return (
     <>
       <div>
-        <form action="">
+        <form action="" onSubmit={ () => handleSubmit(formData) }>
           <label htmlFor="service">Nome do serviço</label>
           <input
             type="text"
