@@ -1,4 +1,6 @@
-function Form({ setShowForm }) {
+import { SetShowFormType } from '../types';
+
+function Form({ setShowForm }:SetShowFormType) {
   return (
     <div>
       <label htmlFor="service">Nome do serviço</label>
