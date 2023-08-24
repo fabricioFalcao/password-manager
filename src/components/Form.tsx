@@ -1,4 +1,4 @@
-function Form() {
+function Form({ setShowForm }) {
   return (
     <div>
       <label htmlFor="service">Nome do serviço</label>
@@ -14,7 +14,7 @@ function Form() {
       <input type="text" id="url" />
       <br />
       <button>Cadastrar</button>
-      <button>Cancelar</button>
+      <button onClick={ () => setShowForm(false) }>Cancelar</button>
     </div>
   );
 }
