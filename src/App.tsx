@@ -13,6 +13,10 @@ function App() {
     setServicesList([...servicesList, formData]);
   };
 
+  const handleDeletion = (login: string) => {
+    setServicesList(servicesList.filter((serviceCard) => serviceCard.login !== login));
+  };
+
   return (
     <div>
       <Title>Gerenciador de senhas</Title>
@@ -21,7 +25,7 @@ function App() {
         ? <button onClick={ () => setShowForm(true) }>Cadastrar nova senha</button>
         : <Form setShowForm={ setShowForm } handleSubmit={ handleSubmit } />
       }
-      <ServicesList servicesList={ servicesList } />
+      <ServicesList servicesList={ servicesList } handleDeletion={ handleDeletion } />
     </div>
   );
 }
