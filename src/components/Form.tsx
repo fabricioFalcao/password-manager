@@ -20,6 +20,8 @@ function Form({ setShowForm, handleSubmit }: FormProps) {
   const [formData, setFormData] = useState(INITIAL_STATE);
   const { service, login, password, url } = formData;
 
+  const [showTypingPass, setShowTypingPass] = useState(false);
+
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
   ) => {
@@ -56,7 +58,7 @@ function Form({ setShowForm, handleSubmit }: FormProps) {
   return (
     <>
       <div>
-        <form action="" onSubmit={ onSubmit }>
+        <form action="" onSubmit={ onSubmit } onReset={ () => setShowForm(false) }>
           <label htmlFor="service">Nome do serviço</label>
           <input
             type="text"
@@ -77,12 +79,20 @@ function Form({ setShowForm, handleSubmit }: FormProps) {
           <br />
           <label htmlFor="password">Senha</label>
           <input
-            type="password"
+            type={ showTypingPass ? 'text' : 'password' }
             id="password"
             required
             value={ password }
             onChange={ handleChange }
           />
+          <button
+            data-testid="show-hide-form-password"
+            type="button"
+            onClick={ () => setShowTypingPass(!showTypingPass) }
+          >
+            {showTypingPass ? 'Esconder senha' : 'Mostrar senha'}
+
+          </button>
           <br />
           <label htmlFor="url">URL</label>
           <input
@@ -93,7 +103,7 @@ function Form({ setShowForm, handleSubmit }: FormProps) {
           />
           <br />
           <button type="submit" disabled={ !validForm }>Cadastrar</button>
-          <button onClick={ () => setShowForm(false) }>Cancelar</button>
+          <button type="reset">Cancelar</button>
         </form>
       </div>
 
