@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Swal from 'sweetalert2';
 import { FormDataType, SetStateType } from '../types';
 
 const INITIAL_STATE = {
@@ -36,6 +37,13 @@ function Form({ setShowForm, handleSubmit }: FormProps) {
     event.preventDefault();
     handleSubmit(formData);
     setShowForm(false);
+    Swal.fire({
+      title: 'Sucesso!',
+      text: 'Serviço cadastrado com sucesso',
+      icon: 'success',
+      confirmButtonText: 'Prosseguir',
+      timer: 1500,
+    });
   };
 
   const formFieldsCheck = {
