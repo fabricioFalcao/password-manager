@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FormDataType, SetShowFormType } from '../types';
+import { FormDataType, SetStateType } from '../types';
 
 const INITIAL_STATE = {
   service: '',
@@ -12,7 +12,7 @@ const validClass = 'valid-password-check';
 const invalidClass = 'invalid-password-check';
 
 type FormProps = {
-  setShowForm: SetShowFormType;
+  setShowForm: SetStateType;
   handleSubmit: (formData: FormDataType) => void;
 };
 
